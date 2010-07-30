@@ -1,0 +1,5 @@
+Model                          Port            
+----------------------------------------------------------
+Canon PowerShot G10            usb:            
+Canon PowerShot G10            usb:002,096     
+Canon PowerShot G10            usb:002,095     

@@ -1,0 +1,69 @@
+Decapod 0.5 - CALIBRATION MODULE
+================================
+
+Project Sources
+===============
+
+Main Project Site: http://sites.google.com/site/decapodproject/
+Source Code: https://calibration.decapod.googlecode.com/hg/src
+Documentation: http://calibration.decapod.googlecode.com/hg/doc
+Data: https://calibration.decapod.googlecode.com/hg/data
+
+
+Third Party Software Used By Decapod 0.5 Calibration Module
+===========================================================
+
+Decapod is a Web application front-end for a collection image processing and capture tools,
+aggregated together using command line utilities. Third-party dependencies for the Decapod 0.5
+calibration module release requires:
+
+* opencv2.0 (Opensource Image Processing Library)
+* The other dependencies are the same
+
+Note: opencv1.0 installation will only make the independent camera calibration code to run. For
+stereo calibration there are functions required which are not present in opencv1.0 package but
+are available in opencv2.0 package. Another additional note is if you have UBUNTU LUCID (10.04)
+then opencv2.0 comes prepackaged, you can install it from the package manager
+
+
+Directory Structure And Files
+=============================
+
+The calibration module contains code for both independent camera calibration and stereo calibration.
+For each camera calibration the directory structure contains src, doc, and data subfolders. I have also 
+included the pattern.pdf file which we used for calibration, it can be printed and used for future tests.
+The source folder is placed two directories deep than the Data folder, so structure like this should be
+used or the paths will need to be changed inside the files accordingly.
+
+Hard Coded Variables
+====================
+
+- The pattern size is hard coded and we have included the pattern pdf file.
+- The number of samples is hard coded
+- The saved images have names such as IMG_0000, IMG_0001, and so on for independent camera calibration
+- The saved images have such as image_0.jpg, img_1.jpg, and so on for stereo camera calibration
+- The camera name used was also hard coded, the tests were done with Canon G10 cameras
+
+Note: At the moment in the code it is assumed that the cameras used are matching cameras
+
+
+Variables that must be changed
+==============================
+
+The user of the calibration module will have to change the datapaths in the script to point to the
+location where the file and other data will be saved. The source folder is placed two directories deep than 
+the Data folder, so structure like this should be used or the paths will need to be changed inside the files 
+accordingly.
+
+
+Known Issues
+============
+
+The independent camrea calibration gives very good results in terms of pixel accuracy, we get less than 
+one pixel rms error which is very good indeed. The stereo camera calibration however gives a bit more 
+rms error but considered alright as the calibration data was reasonable. This is due to the alignment
+between the cameras and also some problem with the built-in cvStereoRectify function by opencv. It is 
+extremely important that the stereo camera set up has the camera aligned properly so that both cameras 
+are covering more or less the same view, and the checker board is in full view to avoid for bad samples,
+although the algorithm will ask to capture again if it is unable to process the image.
+
